@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A letter for you</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Noto+Sans+Tagalog&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b2a1f; --bg2:#15463a; --ink:#e4f2e9;
+  --paper:#fbf8f0; --paper-ink:#2a2118; --line:rgba(138,90,59,.2);
+  --env:#8a5a3b; --env-dark:#6a4229; --env-flap:#a26b47;
+  --seal:#d9a441; --seal-ink:#2b1a0e;
+  color-scheme:dark;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:radial-gradient(120% 90% at 50% 20%,var(--bg2),var(--bg) 70%);
+  color:var(--ink); font-family:'Syne',system-ui,sans-serif; overflow:hidden;
+  display:grid; place-items:center; touch-action:manipulation;
+}
+.stage{perspective:1100px; width:min(86vw,420px); aspect-ratio:7/5; position:relative}
+.env{
+  position:absolute; inset:0;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .25s ease-out, opacity .6s ease;
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{50%{translate:0 -10px}}
+.env>*{position:absolute; inset:0}
+
+/* layers, back to front: back(0) < sheet(1) < pocket(2) < flap(3) */
+.back{background:var(--env-dark); border-radius:14px; box-shadow:0 30px 60px -20px rgba(0,0,0,.6); z-index:0}
+.sheet{
+  z-index:1; background:var(--paper); border-radius:8px; inset:8% 7% auto 7%; height:80%;
+  z-index:1; background:var(--paper); border-radius:8px; inset:8% 7% auto 7%; height:80%;
